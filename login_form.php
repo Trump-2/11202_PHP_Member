@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,11 +29,11 @@
 
         ?>
         <div class="row col-8 my-4">
-          <label for="" class="col-3">帳號:</label><input type="text" name="" id=""
+          <label for="" class="col-3">帳號:</label><input type="text" name="acc" id=""
             class="col-9 rounded border-0 border-bottom border-1" />
         </div>
         <div class="row col-8 my-4">
-          <label for="" class="col-3">密碼:</label><input type="text" name="" id=""
+          <label for="" class="col-3">密碼:</label><input type="text" name="pw" id=""
             class="col-9 border-0 border-bottom border-1" />
         </div>
         <div class="text-center">
