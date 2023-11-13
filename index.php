@@ -4,14 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
   <title>Document</title>
 </head>
 
-<body>
+<body class=container>
   <h1>好讚購物網</h1>
-  <header>
-    <a href="register.php">註冊</a>
-    <a href="register.php">登入</a>
+  <header class=nav>
+    <div class="nav-item col-4">
+
+    </div>
+    <div class="nav-item col-4">
+      <ul class='d-flex  justify-content-evenly'>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </div>
+    <div class="nav-item col-4">
+      <?php
+      if (isset($_SESSION['user'])) {
+        echo "歡迎光臨" . $_SESSION['user'];
+        echo "<a href='loginout.php' class='btn btn-info mx-2'>登出</a>";
+      }
+
+      ?>
+      <a href="register.php" class='btn btn-primary mx-2'>註冊</a>
+      <a href="login_form.php" class='btn btn-success mx-2'>登入</a>
+    </div>
   </header>
 </body>
 
