@@ -14,6 +14,7 @@ $user = $pdo->query($sql)->fetchColumn();
 
 //if($user['acc']==$acc && $user['pw']==$pw){
 if ($user) {
+    // 用 session 來記錄狀態
     $_SESSION['user'] = $acc;
     header("location:index.php");
 } else {
