@@ -78,14 +78,10 @@ include_once "./include/connect.php";
         <input type="hidden" name="id" value="<?= $user['id']; ?>">
         <input class="btn-primary mx-2" type="submit" value="更新">
         <input class="btn btn-warning mx-2" type="reset" value="重置">
-        <input class="btn btn-danger mx-2" type="button" value="讓我消失吧">
+        <!-- onclick 後面接 js 的 location.href，location.href 後面放連結，這裡又藏了變數 -->
+        <input class="btn btn-danger mx-2" type="button" value="讓我消失吧" onclick="location.href='del_user.php?id=<?= $user['id']; ?>'">
       </div>
-
-
-
     </form>
-
-
   </div>
 </body>
 
