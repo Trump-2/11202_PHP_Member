@@ -3,14 +3,35 @@
 // $pdo = new PDO($dsn, 'root', '');
 session_start();
 date_default_timezone_set("Asia/Taipei");
-function pdo()
+
+
+$dsn = "mysql:host=localhost;charset=utf8;dbname=member";
+$pdo = new PDO($dsn, 'root', '');
+
+
+function total($table, $id)
 {
-  $dsn = "mysql:host=localhost;charset=utf8;dbname=school";
-  $pdo = new PDO($dsn, 'root', '');
-  return $pdo;
+  global $pdo;
+  $sql = "select count(`id`) from `$table` ";
+
+  if (is_array($id)) {
+    foreach ($id as $col => $value) {
+      $tmp[] = "`$col`='$value'";
+    }
+    $sql .= " where " . join(" && ", $tmp);
+  } else if (is_numeric($id)) {
+    $sql .= " where `id` = '$id'";
+  } else {
+    echo "錯誤:參數的資料型態必須是數字或陣列";
+  }
+  // echo 'find=>' . $sql;
+  $row = $pdo->query($sql)->fetchColumn();
+  return $row;
 }
 
 
+
+// crud 的 d
 function del($table, $id)
 {
   // 方法1 用 include 使用重複的程式碼
@@ -18,7 +39,7 @@ function del($table, $id)
   // 方法2 用 global 變數使用重複的程式碼
   // global $pdo;
   // 方法3 用 function 使用重複的程式碼
-  $pdo = pdo();
+  global $pdo;
 
   $sql = "delete from `$table` where ";
 
@@ -42,7 +63,7 @@ function del($table, $id)
 // crud 的 r
 function all($table = null, $where = '', $other = '')
 {
-  $pdo = pdo();
+  global $pdo;
   $sql = "select * from `$table` ";
 
   if (isset($table) && !empty($table)) {
@@ -74,7 +95,7 @@ function all($table = null, $where = '', $other = '')
 //crud 的 r，針對某筆資料
 function find($table, $id)
 {
-  $pdo = pdo();
+  global $pdo;
   $sql = "select * from `$table` ";
 
   if (is_array($id)) {
@@ -95,7 +116,7 @@ function find($table, $id)
 // $cols 是 set 後面接的欄位名稱和欄位值
 function update($table, $id, $cols)
 {
-  $pdo = pdo();
+  global $pdo;
   $sql = "update `$table` set ";
 
   if (!empty($cols)) {
@@ -124,7 +145,7 @@ function update($table, $id, $cols)
 
 function insert($table, $values)
 {
-  $pdo = pdo();
+  global $pdo;
   $sql = "insert into `$table` ";
 
 

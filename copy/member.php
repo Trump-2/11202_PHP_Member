@@ -8,8 +8,10 @@ include_once "./include/connect.php";
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>會員中心</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
 </head>
 
@@ -31,8 +33,8 @@ include_once "./include/connect.php";
         echo "<a href='member.php' class='btn btn-success mx-2'>會員中心</a>";
       } else {
       ?>
-        <a href="reg.php" class="btn btn-primary mx-2">註冊</a>
-        <a href="login_form.php" class="btn btn-success mx-2">登入</a>
+      <a href="reg.php" class="btn btn-primary mx-2">註冊</a>
+      <a href="login_form.php" class="btn btn-success mx-2">登入</a>
       <?php
       }
       ?>
@@ -49,8 +51,9 @@ include_once "./include/connect.php";
       echo "</div>";
     }
 
-    $sql = "select * from users where `acc`='{$_SESSION['user']}'";
-    $user = $pdo->query($sql)->fetch();
+    // $sql = "select * from users where `acc`='{$_SESSION['user']}'";
+    // $user = $pdo->query($sql)->fetch();
+    $user = find('users', ['acc' => $_SEESSION['user']]);
 
     ?>
     <form action="./api/update.php" method="post" class="col-4 m-auto">
@@ -79,7 +82,8 @@ include_once "./include/connect.php";
         <input class="btn-primary mx-2" type="submit" value="更新">
         <input class="btn btn-warning mx-2" type="reset" value="重置">
         <!-- onclick 後面接 js 的 location.href，location.href 後面放連結，這裡又藏了變數 -->
-        <input class="btn btn-danger mx-2" type="button" value="讓我消失吧" onclick="location.href='./api/del_user.php?id=<?= $user['id']; ?>'">
+        <input class="btn btn-danger mx-2" type="button" value="讓我消失吧"
+          onclick="location.href='./api/del_user.php?id=<?= $user['id']; ?>'">
       </div>
     </form>
   </div>
