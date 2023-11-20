@@ -20,7 +20,7 @@
     <div class="container">
         <div class="w-50 mx-auto">
             <h2>會員登入</h2>
-            <form action="login.php" method="post">
+            <form action="./api/login.php" method="post">
                 <?php
                 // get 是最快取得網頁傳值的方式，所以這裡才用 get
                 if (isset($_GET['error'])) {

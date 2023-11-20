@@ -1,5 +1,5 @@
 <?php
-include_once "./include/connect.php";
+include_once "../include/connect.php";
 $acc = $_POST['acc'];
 $pw = $_POST['pw'];
 
@@ -16,7 +16,7 @@ $user = $pdo->query($sql)->fetchColumn();
 if ($user) {
     // 用 session 來記錄狀態
     $_SESSION['user'] = $acc;
-    header("location:index.php");
+    header("location:../index.php");
 } else {
-    header('location:login_form.php?error=帳號密碼錯誤');
+    header('location:../login_form.php?error=帳號密碼錯誤');
 }
