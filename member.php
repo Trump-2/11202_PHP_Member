@@ -45,7 +45,18 @@ include_once "./include/connect.php";
   <div class="container">
     <h1>使用者資料</h1>
     <?php
-    // 這裡 sql 語句中只有一個 $acc 是因為假設帳號是唯一值沒有重複
+    // 將 update.php 送來的資料顯示出來
+    if(isset($_SESSION['msg'])){
+      echo "<div class='alert alert-warning text-center col-6 m-auto'>";
+      echo $_SESSION['msg'];
+
+      // 因為訊息只顯示一次
+      unset($_SESSION['msg']);
+      echo "</div>";
+    }
+
+
+    // 這裡 sql 語句中只有 $acc 是因為假設帳號是唯一值沒有重複
     $sql = "select * from `users` where `acc` = '{$_SESSION['user']}'";
     $user = $pdo->query($sql)->fetch();
     ?>
@@ -71,6 +82,7 @@ include_once "./include/connect.php";
         <input class="form-control" type="text" name="address" id="address" value="<?= $user['address'] ?>">
       </div>
       <div>
+        <input type="hidden" name="id" id="id" value="<?=$user['id']?>">
         <input class="btn btn-primary mx-2" type="submit" value="更新">
         <input class="btn btn-warning mx-2" type="reset" value="重置">
         <input class="btn btn-danger mx-2" type="button" value="讓我消失八">
