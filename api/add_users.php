@@ -7,12 +7,13 @@ $acc = htmlspecialchars(trim($_POST['acc']));
 
 // $pdo->exec($sql);
 
-insert("users", [
-  'acc' => "{$acc}",
-  'pw'  => "{$_POST['pw']}",
-  'name' => "{$_POST['name']}",
-  'email' => "{$_POST['email']}",
-  'address' => "{$_POST['address']}"
+// 這裡用 connect.php 中的函數代替上面的 sql 語句
+insert('users', [
+    'acc' => "$acc",
+    'pw'  => "{$_POST['pw']}",
+    'name'=> "{$_POST['name']}",
+    'email' => "{$_POST['email']}",
+    'address'=> "{$_POST['address']}"
 ]);
 
-header("Location:../index.php");
+header("Location:../home.php");

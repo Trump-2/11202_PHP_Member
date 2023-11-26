@@ -5,4 +5,4 @@ session_start();
 unset($_SESSION['user']);
 
 // 將使用者導回首頁
-header('location:home.php');
+header('location:../home.php');
