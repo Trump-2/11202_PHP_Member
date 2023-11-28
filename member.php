@@ -9,40 +9,38 @@ include_once "./include/connect.php";
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>會員中心</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
 
 </head>
 
 <body>
-  <div class="container">
+  <div class="container min-vh-100">
     <?php
     include "./include/header.php";
     ?>
 
     <h1>使用者資料</h1>
     <?php
-        // 將 update.php 送來的資料顯示出來
-        if (isset($_SESSION['msg'])) {
-            echo "<div class='alert alert-warning text-center col-6 m-auto'>";
-            echo $_SESSION['msg'];
+    // 將 update.php 送來的資料顯示出來
+    if (isset($_SESSION['msg'])) {
+      echo "<div class='alert alert-warning text-center col-6 m-auto'>";
+      echo $_SESSION['msg'];
 
-            // 因為訊息只顯示一次
-            unset($_SESSION['msg']);
-            echo "</div>";
-        }
+      // 因為訊息只顯示一次
+      unset($_SESSION['msg']);
+      echo "</div>";
+    }
 
 
-        // 這裡 sql 語句中只有 $acc 是因為假設帳號是唯一值沒有重複
-        // $sql = "select * from `users` where `acc` = '{$_SESSION['user']}'";
-        // $user = $pdo->query($sql)->fetch();
+    // 這裡 sql 語句中只有 $acc 是因為假設帳號是唯一值沒有重複
+    // $sql = "select * from `users` where `acc` = '{$_SESSION['user']}'";
+    // $user = $pdo->query($sql)->fetch();
 
-        // 這裡用自訂函數 find( ) 來改寫上面的兩行
-        $user = find('users', ['acc' => "{$_SESSION['user']}"]);
-        ?>
+    // 這裡用自訂函數 find( ) 來改寫上面的兩行
+    $user = find('users', ['acc' => "{$_SESSION['user']}"]);
+    ?>
     <form action="./api/update.php" method="post" class="col-4 m-auto">
       <div class="input-group my-1">
         <label class="col-4  input-group-text">帳號:</label>
@@ -68,15 +66,13 @@ include_once "./include/connect.php";
         <input type="hidden" name="id" id="id" value="<?= $user['id'] ?>">
         <input class="btn btn-primary mx-2" type="submit" value="更新">
         <input class="btn btn-warning mx-2" type="reset" value="重置">
-        <input class="btn btn-danger mx-2" type="button" value="讓我消失八"
-          onclick="location.href='./api/del_user.php?id=<?= $user['id'] ?>'">
-
+        <input class="btn btn-danger mx-2" type="button" value="讓我消失八" onclick="location.href='./api/del_user.php?id=<?= $user['id'] ?>'">
       </div>
-
-
-
     </form>
   </div>
+  <?php
+  include "./include/footer.php";
+  ?>
 </body>
 
 </html>

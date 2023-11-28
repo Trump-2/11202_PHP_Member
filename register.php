@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <div id="app" class="container">
+  <div id="app" class="container min-vh-100">
     <?php
     include "./include/header.php";
     ?>
@@ -48,6 +48,10 @@
 
 
     </form>
+    <?php
+    include "./include/footer.php";
+    ?>
+
   </div>
 </body>
 
