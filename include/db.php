@@ -235,7 +235,3 @@ function dd($array)
   print_r($array);
   echo "</pre>";
 }
-
-$student = new DB('students');
-$rows = $student->find(2);
-dd($rows);

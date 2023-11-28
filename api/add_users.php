@@ -19,7 +19,9 @@ $acc = htmlspecialchars(trim($_POST['acc']));
 //     'address'=> "{$_POST['address']}"
 // ]);
 
-// 上面使用 db.php 的 save function 變成這樣
+/*
+上面使用 db.php 的 save function 變成這樣，而參數只有 $_POST 是因為它本身就是包含所有欄位的陣列
+*/
 $User->save($_POST);
 
 header("Location:../home.php");

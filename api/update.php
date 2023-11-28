@@ -19,7 +19,7 @@ include_once "../include/db.php";
 //   'address' => "{$_POST['address']}"
 // ], "{$_POST['id']}");
 
-// 上面使用 db.php 裡面的 function 變成這樣
+// 上面使用 db.php 的 save function 變成這樣，而參數只有 $_POST 是因為它本身就是包含所有欄位的陣列
 $res = $User->save($_POST);
 
 if ($res > 0) {
