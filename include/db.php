@@ -6,7 +6,7 @@ session_start();
 class DB
 {
   // class 內的成員不能為運算式
-  protected $dsn = "mysql:host=localhost;charset=utf8;dbname=school";
+  protected $dsn = "mysql:host=localhost;charset=utf8;dbname=member";
   protected $pdo;
   protected $table;
 
@@ -226,6 +226,8 @@ class DB
     return $tmp;
   }
 }
+
+$User = new DB('users');
 
 function dd($array)
 {
